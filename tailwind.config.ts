@@ -8,6 +8,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        "jersey": ['"Jersey 20"', "monospace"],
+        "roboto-slab": ['"Roboto Slab"', "monospace"],
+        "roboto-mono": ['"Roboto Mono"', "monospace"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
