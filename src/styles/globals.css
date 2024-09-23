@@ -56,3 +56,11 @@ body {
     text-wrap: balance;
   }
 }
+
+.brick-col {
+  background-image: url('/LeaderBoard/Brick.webp');
+  background-size: 82px; /* Set the size of the background image */
+  background-position: center;
+  background-repeat: repeat; /* If you want the image to repeat across the background */
+}
+
