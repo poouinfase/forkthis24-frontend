@@ -2,7 +2,9 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
-
+import { FaTachometerAlt, FaTrophy, FaBook, FaSignOutAlt, FaSearch } from 'react-icons/fa'; // Importing the icons
+import Link from 'next/link';
+/* eslint-disable @typescript-eslint/no-unused-vars */
 const Dashboard: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState('05:05:05');
   const [score, setScore] = useState(5763);
@@ -17,81 +19,111 @@ const Dashboard: React.FC = () => {
   ]);
 
   return (
-    <div className="flex bg-black text-white h-screen overflow-hidden">
+    <div className="flex bg-black text-white h-screen overflow-hidden font-roboto-mono">
       <Head>
         <title>Dashboard</title>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
       </Head>
 
-      <aside className="w-64 p-5 bg-[rgba(10,12,14,1)] flex flex-col">
-        <div className="mb-7 text-center">
-          <Image src="/player1.png" alt="Player" width={50} height={50} />
-          <p>Player 1</p>
-          <p>pimla@gmail.com</p>
+      {/* Left Sidebar */}
+      <aside className="w-64 p-6 bg-[rgba(10,12,14,1)] flex flex-col">
+        <div className="mb-10 text-center">
+          <div className="mb-2 flex items-center justify-center space-x-4">
+            <Image src="/flower.png" alt="Avatar" width={64} height={64} className="rounded-full" />
+            <div>
+              <p className="text-lg">Player 1</p>
+              <p className="text-sm text-gray-400">pimla@gmail.com</p>
+            </div>
+          </div>
         </div>
 
-        <div className="mt-5">
-          <input type="text" placeholder="Search..." className="w-full p-2 rounded-md border-none bg-gray-700 text-white" />
+        <div className="mb-10">
+          <div className="flex items-center bg-gray-700 p-2 rounded-md">
+            <FaSearch className="text-gray-400 mr-2" />
+            <input type="text" placeholder="Search..." className="w-full bg-transparent text-white outline-none" />
+          </div>
         </div>
 
         <nav className="flex-1">
-          <a href="#" className="block py-2 text-white">Dashboard</a>
-          <a href="#" className="block py-2 text-white">Leaderboard</a>
-          <a href="#" className="block py-2 text-white">Resources</a>
+          <Link href="/dashboard" className="block py-3 text-white text-lg flex items-center">
+            <FaTachometerAlt className="mr-3 text-[#C8BCF6]" /> Dashboard
+          </Link>
+          <Link href="/leaderboard" className="block py-3 text-white text-lg flex items-center">
+            <FaTrophy className="mr-3 text-[#C8BCF6]" /> Leaderboard</Link>
+          {/* <a href="#" className="block py-3 text-white text-lg flex items-center">
+            <FaBook className="mr-3 text-[#C8BCF6]" /> Resources
+          </a> */}
         </nav>
 
-        <div className="text-left pt-5">
-          <a href="#" className="text-white">Logout</a>
+        <div className="pt-10">
+          <a href="#" className="text-white text-lg flex items-center">
+            <FaSignOutAlt className="mr-3 text-[#C8BCF6]" />
+            Logout
+          </a>
         </div>
       </aside>
 
-      <main className="flex-1 p-2 overflow-y-auto flex flex-col">
-        <section className="flex flex-col items-center mb-5">
+      {/* Main Content */}
+      <main className="flex-1 p-8 overflow-y-auto">
+        {/* Timer Section */}
+        <section className="flex justify-center items-center mb-12">
           <div className="text-center">
-            <h1 className="text-3xl mb-1">Time Left</h1>
-            <p className="text-4xl">{timeLeft}</p>
+            <h1 className="text-3xl mb-2">Time Left</h1>
+            <p className="text-6xl font-bold leading-tight tracking-wider">{timeLeft}</p>
           </div>
+          <div className="ml-5">
+            <Image src="/mario.png" alt="Mario" width={100} height={100} />
+          </div>
+        </section>
 
-          <div className="w-full max-w-full border-2 border-white rounded-lg overflow-hidden bg-black mx-auto">
-            <div className="p-4">
-              <h2 className="text-xl mb-4">Repositories</h2>
-              <div className="space-y-4">
-                {repositories.map((repo) => (
-                  <div key={repo.id} className="bg-black p-4 border border-gray-600 rounded-lg">
-                    <div className="flex justify-between text-white">
-                      <div className="bg-[rgba(99,95,95,1)] text-white p-2 rounded-md flex-1">{repo.id}</div>
-                      <div className="bg-[rgba(99,95,95,1)] text-white p-2 rounded-md flex-1">{repo.name}</div>
-                      <div className="bg-[rgba(99,95,95,1)] text-white p-2 rounded-md flex-1">{repo.tech}</div>
-                      <div className="bg-[rgba(99,95,95,1)] text-white p-2 rounded-md flex-1">{repo.stars}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+        {/* Repository Section */}
+        <section className="w-full mx-auto max-w-4xl mb-6">
+          <div className="border-2 border-gray-600 rounded-lg bg-black p-6">
+            <h2 className="text-3xl mb-3 text-center">Repositories</h2>
+            <div className="space-y-4">
+              {repositories.map((repo) => (
+                <div key={repo.id} className="bg-[rgba(25,25,25,1)] p-4 border border-gray-600 rounded-lg flex justify-between items-center">
+                  <div className="text-white flex-1 text-left">{repo.id}</div>
+                  <div className="text-white flex-1 text-left">{repo.name}</div>
+                  <div className="text-white flex-1 text-left">{repo.tech}</div>
+                  <div className="text-white flex-1 text-left">{repo.stars}</div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
       </main>
 
-      <aside className="w-64 p-4 bg-[rgba(10,12,14,1)] border-l-2 border-gray-900 flex flex-col h-full box-border">
-        <div className="flex-1 bg-[rgba(10,12,14,1)] border-2 border-white rounded-lg p-4 mb-4 box-border">
-          <h2 className="text-xl mb-1">Your Score</h2>
-          <p className="text-lg">{score}</p>
-          <Image src="/coins.png" alt="Coins" width={50} height={50} className="inline-block align-middle" />
+      {/* Right Sidebar */}
+      <aside className="w-[18rem] p-8 bg-[rgba(10,12,14,1)] border-l-2 border-gray-900 flex flex-col overflow-y-auto">
+        {/* Score Section */}
+        <div className="mb-8 p-6 bg-[rgba(25,25,25,1)] border border-gray-700 rounded-lg text-center">
+          <h2 className="text-2xl mb-4">Your Score</h2>
+          <div className="flex justify-center items-center space-x-4">
+            <p className="text-lg font-bold">{score}</p>
+            <Image src="/coins.png" alt="Coins" width={48} height={48} />
+          </div>
         </div>
 
-        <div className="flex-1 bg-[rgba(10,12,14,1)] border-2 border-white rounded-lg p-4 mb-4 box-border overflow-hidden">
-          <h2 className="text-xl mb-1">Challenge Progress</h2>
-          <p>Questions Solved:</p>
-          <p>{questionsSolved}/15</p>
-          <p>Fastest Solve:</p>
-          <p>5 Min 30 Sec</p>
-          <p>Longest Solve:</p>
-          <p>25 Min 30 Sec</p>
+        {/* Challenge Progress Section */}
+        <div className="mb-8 p-6 bg-[rgba(25,25,25,1)] border border-gray-700 rounded-lg text-center">
+          <h2 className="text-2xl mb-4">Challenge Progress</h2>
+          <p className="text-lg">Questions Solved: {questionsSolved}/15</p>
+          <p className="text-sm text-gray-400">Fastest Solve: 5 Min 30 Sec</p>
+          <p className="text-sm text-gray-400">Longest Solve: 25 Min 30 Sec</p>
+          <div className="flex justify-center mt-4">
+            <Image src="/clock.png" alt="Clock" width={48} height={48} />
+          </div>
         </div>
 
-        <div className="flex-1 bg-[rgba(10,12,14,1)] border-2 border-white rounded-lg p-4 mb-4 box-border">
-          <h2 className="text-xl mb-1">Report an issue</h2>
-          <p>If you are facing any issue on this page please let us know.</p>
-          <button className="bg-purple-900 text-white border-none rounded-md py-2 px-4 text-sm cursor-pointer">Click here</button>
+        {/* Report Issue Section */}
+        <div className="p-6 bg-[rgba(25,25,25,1)] border border-gray-700 rounded-lg text-center">
+          <h2 className="text-2xl mb-4">Report an Issue</h2>
+          <p className="mb-4 text-sm">If you are facing any issue on this page, please let us know.</p>
+          <button className="bg-purple-900 text-white py-2 px-4 rounded-md">Click here</button>
         </div>
       </aside>
     </div>
