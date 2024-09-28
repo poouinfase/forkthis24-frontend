@@ -1,12 +1,10 @@
 "use client";
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import LeaderboardBox from "../components/LeaderboardBox";
 import Image from "next/image";
-interface leaderboardType {
-  score: number;
-  githubUsername: string;
-  rank: number;
-}
+import axios from "axios";
+import Cookie from "js-cookie";
+import type { leaderboardType } from "@/lib/types";
 
 interface userType {
   score: number | null;
@@ -17,63 +15,41 @@ interface userType {
 }
 
 function Leaderboard() {
-  const [leaderboard, setLeaderBoard] = useState<Array<leaderboardType>>([]);
-  useEffect(() => {
-    const fetchLeaderBoardpage = async (
-      limit: number = 1000,
-      page: number = 0
-    ) => {
-      try {
-        const backend = `${process.env.NEXT_PUBLIC_BACKEND_URL}/leaderboard?limit=${limit}&page=${page}`;
-
-        const res = await fetch(backend, {
-          method: "GET",
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-        });
-        if (!res) {
-          throw new Error("response not found");
-        }
-        const response = await res.json();
-        setLeaderBoard(response.data);
-      } catch (e: any) {
-        console.log(e);
-      }
-    };
-    fetchLeaderBoardpage();
-  }, []);
-
-  const [user, setUser] = useState<userType>(() => {
-    return {
-      score: null,
-      githubUsername: null,
-      email: null,
-      Issues: null,
-      rank: null,
-    };
-  });
+  const [leaderboard, setLeaderBoard] = useState<Array<leaderboardType> | null>(null);
+  const [user, setUser] = useState<userType>({} as userType);
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const backend = `${process.env.NEXT_PUBLIC_BACKEND_URL}/user`;
-
-        const res = await fetch(backend, {
-          method: "GET",
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
+        const userData = await axios.get(backend, {
+          headers: {
+            Authorization: `Bearer ${Cookie.get("token")}`,
+          },
         });
-        if (!res) {
-          throw new Error("response not found");
-        }
-        const response = await res.json();
-        console.log(response);
-        setUser(response);
-      } catch (e: any) {
+        setUser(userData.data);
+      } catch (e: unknown) {
         console.log(e);
       }
     };
     fetchUser();
+  }, []);
+
+  useEffect(() => {
+    const fetchLeaderBoardpage = async (limit = 250, page = 0) => {
+      try {
+        const backend = `${process.env.NEXT_PUBLIC_BACKEND_URL}/leaderboard?limit=${limit}&page=${page}`;
+        const leaderboardData = await axios.get(backend, {
+          headers: {
+            Authorization: `Bearer ${Cookie.get("token")}`,
+          },
+        });
+        setLeaderBoard(leaderboardData.data.data);
+      } catch (e: unknown) {
+        console.log(e);
+      }
+    };
+    fetchLeaderBoardpage();
   }, []);
 
   return (
@@ -98,8 +74,8 @@ function Leaderboard() {
       </div>
       <div className="absolute top-1/2 -translate-y-1/2 lg:translate-y-0 lg:top-4 left-4 w-[40%] lg:w-[35%]">
         <span className="text-black font-robotoslab font-bold text-xl lg:text-3xl absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-center">
-          <p>Score: 120</p>
-          <p>Rank: 13</p>
+          <p>{user.score}</p>
+          <p>{user.rank}</p>
         </span>
         <Image
           src={"/LeaderBoard/Cloud.webp"}
@@ -109,7 +85,7 @@ function Leaderboard() {
           className="w-full"
         />
       </div>
-      <LeaderboardBox />
+      <LeaderboardBox leaderboardDate={leaderboard}/>
     </div>
   );
 }

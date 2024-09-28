@@ -20,7 +20,7 @@ export default function Redirect() {
   }, [jwttoken, router]);
 
   return (
-    <main className="w-full h-[100vh] bg-[#1C1333] flex justify-center items-center font-gilroyBlack text-4xl font-bold text-[#af99ed] text-center">
+    <main className="w-full h-[100vh] bg-[#1F1f22] flex justify-center items-center font-robotomono text-4xl font-bold text-white text-center">
       You are being redirected...
     </main>
   );
