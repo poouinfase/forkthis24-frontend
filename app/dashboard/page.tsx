@@ -1,5 +1,5 @@
 "use client";
-import React, { Component, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import Head from "next/head";
 import {
   FaTachometerAlt,
@@ -10,8 +10,7 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 import Cookie from "js-cookie";
-import postHandler from "@/helpers/postHandler";
-import getHandler from "@/helpers/getHandler";
+import axios from "axios";
 
 // interface DashboardState {
 //     timeLeft: string;
@@ -75,7 +74,11 @@ function Dashboard() {
     const fetchUser = async () => {
       try {
         const backend = `${process.env.NEXT_PUBLIC_BACKEND_URL}/repo`;
-        const repoData = await getHandler(backend);
+        const repoData = await axios.get(backend, {
+          headers: {
+            Authorization: `Bearer ${Cookie.get("token")}`,
+          }
+        });
         setRepositories(repoData.data);
       } catch (e: unknown) {
         console.log(e);
@@ -99,7 +102,11 @@ function Dashboard() {
     const fetchUser = async () => {
       try {
         const backend = `${process.env.NEXT_PUBLIC_BACKEND_URL}/user`;
-        const userData = await getHandler(backend)
+        const userData = await axios.get(backend, {
+          headers: {
+            Authorization: `Bearer ${Cookie.get("token")}`,
+          }
+        })
         setUser(userData.data);
       } catch (e: unknown) {
         console.log(e);
