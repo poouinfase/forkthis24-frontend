@@ -71,42 +71,26 @@ function Resources() {
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
-      {/* Mobile Header */}
-      <div className="md:hidden flex items-center justify-between p-4">
-        <div className="cursor-pointer" onClick={toggleSidebar}>
-          <VscThreeBars size={28} color="white" />
-        </div>
-        <h1 className="text-3xl font-press">Resources</h1>
-      </div>
-
-      <div className="flex-1 flex">
-        {sidebarOpen && (
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-40"
-            onClick={toggleSidebar}
-          ></div>
-        )}
-        <MainSidebar />
-        <div className="flex-1 overflow-y-auto hide-scrollbar">
-          <div className="p-4 md:p-6 text-white">
-            <h1 className="text-3xl md:text-5xl mb-8 text-center font-press md:block hidden p2p">
-              Resources
-            </h1>
-            {/* YouTube Section */}
-            {renderSection(
-              "YouTube",
-              "text-[rgba(28,194,34,1)]",
-              "border-4 border-[rgba(1,55,6,1)]",
-              youtubeResources
-            )}
-            {/* Articles Section */}
-            {renderSection(
-              "Articles",
-              "text-[rgba(50,69,236,1)]",
-              "border-4 border-[rgba(23,33,121,1)]",
-              articleResources
-            )}
-          </div>
+      <MainSidebar />
+      <div className="flex-1 overflow-y-auto hide-scrollbar">
+        <div className="p-4 md:p-6 text-white">
+          <h1 className="text-3xl md:text-5xl mb-8 text-center font-press md:block hidden p2p">
+            Resources
+          </h1>
+          {/* YouTube Section */}
+          {renderSection(
+            "YouTube",
+            "text-[rgba(28,194,34,1)]",
+            "border-4 border-[rgba(1,55,6,1)]",
+            youtubeResources
+          )}
+          {/* Articles Section */}
+          {renderSection(
+            "Articles",
+            "text-[rgba(50,69,236,1)]",
+            "border-4 border-[rgba(23,33,121,1)]",
+            articleResources
+          )}
         </div>
       </div>
     </div>
