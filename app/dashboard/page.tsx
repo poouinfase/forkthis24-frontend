@@ -11,13 +11,8 @@ import {
 import Link from "next/link";
 import Cookie from "js-cookie";
 import axios from "axios";
-
-// interface DashboardState {
-//     timeLeft: string;
-//     score: number;
-//     questionsSolved: number;
-//     isNavbarOpen: boolean;
-// }
+import { repositories } from "@/lib/repository";
+import Image from "next/image";
 
 interface userType {
   score: number | null;
@@ -28,15 +23,6 @@ interface userType {
   name: string | null;
 }
 
-interface repoInterface {
-  _id: string;
-  name: string;
-  tech: string;
-  stars: number;
-  repourl: string;
-  issueNumber: number;
-}
-
 function Dashboard() {
   const [isClient, setIsClient] = useState(false);
 
@@ -44,7 +30,6 @@ function Dashboard() {
     setIsClient(true);
   }, []);
 
-  const logoutUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/logout`;
   const [isNavbarOpen, setNavbar] = useState<boolean>(false);
   const toggleNavbar = () => {
     setNavbar(!isNavbarOpen);
@@ -68,35 +53,7 @@ function Dashboard() {
     return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
-  const [repositories, setRepositories] = useState<Array<repoInterface>>([]);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const backend = `${process.env.NEXT_PUBLIC_BACKEND_URL}/repo`;
-        const repoData = await axios.get(backend, {
-          headers: {
-            Authorization: `Bearer ${Cookie.get("token")}`,
-          }
-        });
-        setRepositories(repoData.data);
-      } catch (e: unknown) {
-        console.log(e);
-      }
-    };
-    fetchUser();
-  }, []);
-
-  const [user, setUser] = useState<userType>(() => {
-    return {
-      score: null,
-      githubUsername: null,
-      email: null,
-      Issues: null,
-      rank: null,
-      name: null,
-    };
-  });
+  const [user, setUser] = useState<userType>({} as userType);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -128,7 +85,7 @@ function Dashboard() {
       >
         <div className="mb-10 text-center lg:flex lg:flex-col lg:items-center">
           <div className="mb-28 flex items-center justify-center space-x-0">
-            <img
+            <Image
               src="/flower.png"
               alt="Avatar"
               width={150}
@@ -165,7 +122,7 @@ function Dashboard() {
 
         <div className="pt-10">
           <a
-            href={logoutUrl}
+            href={"opdkasopdkas"}
             className="p-6 text-white text-lg flex items-center hover:text-purple-500 transition-colors duration-200"
           >
             <FaSignOutAlt className="mr-3 text-[#C8BCF6]" />
@@ -202,7 +159,7 @@ function Dashboard() {
             </div>
           )}
           <div className="ml-4 -mt-4">
-            <img src="/mario.png" alt="Mario" width={70} height={100} />
+            <Image src="/mario.png" alt="Mario" width={70} height={100} />
           </div>
         </section>
         {/* Repositories Section */}
@@ -212,19 +169,14 @@ function Dashboard() {
               Repositories
             </h2>
             <div className="space-y-4 max-h-[430px] overflow-y-auto repo-scrollbar">
-              {" "}
-              {/* Restricted the height and added overflow-y-auto */}
               {repositories.map((repo, index) => (
                 <div
-                  key={repo._id}
+                  key={repo.name}
                   className="bg-[rgba(25,25,25,1)] p-4 border border-gray-600 rounded-lg flex flex-col lg:flex-row justify-between items-center"
                 >
                   <div className="text-white flex-1 text-left">{index + 1}</div>
                   <div className="text-white flex-1 text-left">{repo.name}</div>
                   <div className="text-white flex-1 text-left">{repo.tech}</div>
-                  <div className="text-white flex-1 text-left">
-                    {repo.stars}
-                  </div>
                 </div>
               ))}
             </div>
