@@ -1,5 +1,5 @@
 "use client";
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import {
   FaTachometerAlt,
@@ -77,7 +77,7 @@ function Dashboard() {
         const repoData = await axios.get(backend, {
           headers: {
             Authorization: `Bearer ${Cookie.get("token")}`,
-          }
+          },
         });
         setRepositories(repoData.data);
       } catch (e: unknown) {
@@ -105,8 +105,8 @@ function Dashboard() {
         const userData = await axios.get(backend, {
           headers: {
             Authorization: `Bearer ${Cookie.get("token")}`,
-          }
-        })
+          },
+        });
         setUser(userData.data);
       } catch (e: unknown) {
         console.log(e);

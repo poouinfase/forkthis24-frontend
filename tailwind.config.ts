@@ -15,6 +15,7 @@ const config: Config = {
       fontFamily: {
         robotoslab: "Roboto Slab",
         robotomono: "Roboto Mono",
+        p2p: "Press Start 2P",
       },
     },
   },
