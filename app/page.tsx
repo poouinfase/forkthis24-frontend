@@ -4,6 +4,7 @@ import Timeline from "./components/Timeline";
 import Faq from "./components/Faq";
 import Footer from "./components/Footer";
 import Head from "next/head";
+import Timeline2 from "./components/Timeline2";
 export default function Home() {
   return (
     <div>
@@ -15,7 +16,7 @@ export default function Home() {
       </Head>
       <Navbar />
       <Hero />
-
+      <Timeline2 />
       {/* <Timeline /> */}
       <Faq />
       {/* <Footer /> */}

@@ -7,7 +7,7 @@ const Hero: React.FC = () => {
       <p className="text-xl md:text-5xl p2p glow-text font-bold relative -top-20 z-[20] scroller">
         ForkThis&apos;24
       </p>
-      <div className="w-full h-full absolute top-0 left-0 z-0 overflow-hidden ">
+      <div className="w-full h-full absolute top-0 left-0 z-0 overflow-x-hidden ">
         <div className="bg-[rgba(0,0,0,0.3)] w-full h-full absolute top-0 left-0 z-[10] backdrop-blur-[2px]"></div>
         <Image
           src="/bush1.png"
