@@ -19,7 +19,7 @@ export default function Home() {
       <Timeline2 />
       {/* <Timeline /> */}
       <Faq />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
