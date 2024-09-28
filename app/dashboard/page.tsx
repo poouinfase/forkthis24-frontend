@@ -53,35 +53,6 @@ function Dashboard() {
     return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
-  const [repositories, setRepositories] = useState<Array<repoInterface>>([]);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const backend = `${process.env.NEXT_PUBLIC_BACKEND_URL}/repo`;
-        const repoData = await axios.get(backend, {
-          headers: {
-            Authorization: `Bearer ${Cookie.get("token")}`,
-          },
-        });
-        setRepositories(repoData.data);
-      } catch (e: unknown) {
-        console.log(e);
-      }
-    };
-    fetchUser();
-  }, []);
-
-  const [user, setUser] = useState<userType>(() => {
-    return {
-      score: null,
-      githubUsername: null,
-      email: null,
-      Issues: null,
-      rank: null,
-      name: null,
-    };
-  });
   const [user, setUser] = useState<userType>({} as userType);
 
   useEffect(() => {
