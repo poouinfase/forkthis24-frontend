@@ -13,11 +13,11 @@ const LeaderboardBox = (props: LeaderboardBoxProps) => {
         LEADERBOARD
       </h1>
       <div className="bg-[#1C2023] border-2 border-white rounded-2xl p-4">
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-4 gap-4">
           <span className="bg-[#494B56] px-4 py-2 rounded-lg text-2xl font-robotomono font-semibold text-center">
             Rank
           </span>
-          <span className="bg-[#494B56] px-4 py-2 rounded-lg text-2xl font-robotomono font-semibold text-center">
+          <span className="bg-[#494B56] px-4 py-2 col-span-2 rounded-lg text-2xl font-robotomono font-semibold text-center">
             Name
           </span>
           <span className="bg-[#494B56] px-4 py-2 rounded-lg text-2xl font-robotomono font-semibold text-center">
@@ -31,8 +31,8 @@ const LeaderboardBox = (props: LeaderboardBoxProps) => {
               className="bg-[#494B56] flex items-center mr-4 font-semibold font-robotomono justify-around py-4 rounded-lg"
               key={user.githubUsername}
             >
-              <h1>{user.rank}</h1>
-              <h1>{user.githubUsername}</h1>
+              <h1 className="min-w-[5%]">{user.rank}</h1>
+              <h1 className="min-w-[60%] text-center">{user.githubUsername}</h1>
               <h1>{user.score}</h1>
             </Link>
           ))}
