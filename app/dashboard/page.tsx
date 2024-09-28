@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
+import Cookies from "js-cookie";
 import {
   FaTachometerAlt,
   FaTrophy,
@@ -13,7 +14,8 @@ import Cookie from "js-cookie";
 import axios from "axios";
 import { repositories } from "@/lib/repository";
 import Image from "next/image";
-
+import { usePathname, useRouter } from "next/navigation";
+import { IoMdClose } from "react-icons/io";
 interface userType {
   score: number | null;
   githubUsername: string | null;
@@ -25,7 +27,8 @@ interface userType {
 
 function Dashboard() {
   const [isClient, setIsClient] = useState(false);
-
+  const router = useRouter();
+  const path = usePathname();
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -74,73 +77,96 @@ function Dashboard() {
 
   return (
     <div className="flex flex-col lg:flex-row bg-black text-white h-screen">
-      <Head>
-        <title>ForkThis | Dashboard</title>
-      </Head>
-
-      <aside
-        className={`lg:w-80 p-6 bg-[rgba(10,12,14,1)] flex flex-col lg:static absolute font-press ${
-          isNavbarOpen ? "top-0 left-0 w-full" : "hidden"
-        } lg:block`}
-      >
-        <div className="mb-10 text-center lg:flex lg:flex-col lg:items-center">
-          <div className="mb-28 flex items-center justify-center space-x-0">
-            <Image
-              src="/flower.png"
-              alt="Avatar"
-              width={150}
-              height={150}
-              className="rounded-full -mr-4"
-            />
-            <div>
-              <p className="text-lg">{user.name}</p>
-              <p className="text-sm text-gray-400 mr-1">{user.email}</p>
-            </div>
-          </div>
-        </div>
-
-        <nav className="flex-1 mb-1">
-          <a
-            href="/dashboard"
-            className="py-3 p-6 text-white text-lg flex items-center hover:text-purple-500 transition-colors duration-200 mb-3"
-          >
-            <FaTachometerAlt className="mr-3 text-[#C8BCF6]" /> Dashboard
-          </a>
-          <a
-            href="/leaderboard"
-            className="py-3 p-6 text-white text-lg flex items-center hover:text-purple-500 transition-colors duration-200 mb-3"
-          >
-            <FaTrophy className="mr-3 text-[#C8BCF6]" /> Leaderboard
-          </a>
-          <a
-            href="/resources"
-            className="py-3 p-6 text-white text-lg flex items-center hover:text-purple-500 transition-colors duration-200 mb-44"
-          >
-            <FaBook className="mr-3 text-[#C8BCF6]" /> Resources
-          </a>
-        </nav>
-
-        <div className="pt-10">
-          <a
-            href={"opdkasopdkas"}
-            className="p-6 text-white text-lg flex items-center hover:text-purple-500 transition-colors duration-200"
-          >
-            <FaSignOutAlt className="mr-3 text-[#C8BCF6]" />
-            Logout
-          </a>
-        </div>
-      </aside>
-
       <div className="lg:hidden p-4 bg-black flex justify-between items-center">
-        <h1 className="text-2xl">Dashboard</h1>
+        <h1 className="text-xl font-p2p">Dashboard</h1>
         <button
           onClick={toggleNavbar}
           className="text-white text-2xl"
           type="button"
         >
-          <FaBars />
+          {isNavbarOpen ? <IoMdClose /> : <FaBars />}
         </button>
       </div>
+      <aside
+        className={`lg:w-80 p-6 bg-[#1f1f22] flex flex-col lg:static absolute font-press ${
+          isNavbarOpen ? "top-0 left-0 w-full" : "hidden"
+        } lg:block`}
+      >
+        <IoMdClose
+          className="absolute top-6 right-6 lg:hidden text-2xl cursor-pointer"
+          onClick={toggleNavbar}
+        />
+        <div className="mb-10 text-center flex items-center font-open">
+          <Image
+            src="/flower.png"
+            alt="Avatar"
+            width={150}
+            height={150}
+            className="w-20 h-auto"
+          />
+          <div className="text-left relative top-1">
+            <p className="text-lg font-semibold">{user.name}Player 1</p>
+            <p className="text-xs text-gray-400 mr-1 truncate w-full md:w-40">
+              {user.email}keshav.aneja2022@vitstudent.ac.in
+            </p>
+          </div>
+        </div>
+
+        <nav className="flex-1 mb-1 font-open">
+          <Link
+            href="/dashboard"
+            className={`py-2 p-6 text-white text-md flex items-center  transition-colors duration-200 mb-3 hover:bg-purple-500 hover:text-white rounded-md ${
+              path.includes("dashboard") && "bg-purple-500 text-white"
+            }`}
+          >
+            <FaTachometerAlt
+              className={`mr-3 text-[#C8BCF6] ${
+                path.includes("dashboard") && "text-white"
+              }`}
+            />{" "}
+            Dashboard
+          </Link>
+          <Link
+            href="/leaderboard"
+            className={`py-2 p-6 text-white text-md flex items-center  transition-colors duration-200 mb-3 hover:bg-purple-500 hover:text-white rounded-md ${
+              path.includes("leaderboard") && "bg-purple-500 text-white"
+            }`}
+          >
+            <FaTrophy
+              className={`mr-3 text-[#C8BCF6] ${
+                path.includes("leaderboard") && "text-white"
+              }`}
+            />{" "}
+            Leaderboard
+          </Link>
+          <Link
+            href="/resources"
+            className={`py-2 p-6 text-white text-md flex items-center  transition-colors duration-200 mb-3 hover:bg-purple-500 hover:text-white rounded-md ${
+              path.includes("resources") && "bg-purple-500 text-white"
+            }`}
+          >
+            <FaBook
+              className={`mr-3 text-[#C8BCF6] ${
+                path.includes("resources") && "text-white"
+              }`}
+            />{" "}
+            Resources
+          </Link>
+        </nav>
+
+        <div className="pt-10">
+          <button
+            className="py-2 p-6 w-full text-white text-md flex items-center  transition-colors duration-200 mb-3 hover:bg-purple-500 hover:text-white rounded-md"
+            onClick={() => {
+              Cookies.remove("token");
+              router.push("/");
+            }}
+          >
+            <FaSignOutAlt className="mr-3 text-[#C8BCF6]" />
+            Logout
+          </button>
+        </div>
+      </aside>
 
       {/* Main Content */}
       <main className="flex-1 p-8 overflow-hidden">
@@ -148,7 +174,7 @@ function Dashboard() {
         {/* Removed overflow-y-auto from here */}
         <section className="flex justify-center items-center mb-10">
           {isClient && (
-            <div className="text-center">
+            <div className="text-center p2p">
               <h1 className="text-5xl mb-2 font-press -mt-5">Time Left</h1>
               <p
                 className="text-4xl font-bold leading-[30.5px] tracking-[0.5%] font-press"
