@@ -12,6 +12,10 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        robotoslab: "Roboto Slab",
+        robotomono: "Roboto Mono",
+      },
     },
   },
   plugins: [],
