@@ -13,9 +13,9 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
       fontFamily: {
+        p2p: "Press Start 2P",
         robotoslab: "Roboto Slab",
         robotomono: "Roboto Mono",
-        p2p: "press2p",
         open: "Open Sans",
       },
     },

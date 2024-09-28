@@ -7,12 +7,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @font-face {
-  font-family: press2p;
-  src: url(https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap);
+  font-family: p2p;
+  src: url("/p2p.ttf");
 }
-
+.p2p {
+  font-family: p2p;
+}
 @font-face {
   font-family: "Google Sans";
   font-style: normal;
@@ -143,6 +144,31 @@ body {
 }
 
 .inner-scroller::-webkit-scrollbar-thumb {
-  background-color: white;
-  outline: 1px solid slategrey;
+  background-color: #ffffff;
+  outline: 1px solid #733aaa60;
+  border-radius: 50px;
+}
+
+.--landing-card::before {
+  content: "";
+  position: absolute;
+  background: radial-gradient(#ffffff, transparent, transparent);
+  width: 400px;
+  height: 100%;
+  top: var(--y);
+  left: var(--x);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: 0.5s, top 0s left 0s;
+}
+.--landing-card:hover::before {
+  opacity: 1;
+}
+
+.--landing-card::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: rgba(0, 0, 0.85);
+  border-radius: 0.75rem;
 }
