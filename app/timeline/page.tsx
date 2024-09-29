@@ -1,8 +1,9 @@
+import Image from "next/image";
 import Navbar from "../components/Navbar";
 
 const Postcard = () => (
   <div className="w-[296px] h-[194px] p-2">
-    <img
+    <Image
       src="/Timeline/postcard.webp"
       alt="Postcard"
       className="w-full h-auto object-contain"
@@ -24,14 +25,14 @@ const Timeline = () => {
         <div className="flex items-end justify-between mb-[-12px]">
           <div className="flex items-end">
             <div className="w-[100px] h-[100px] flex-shrink-0">
-              <img
+              <Image
                 src="/Timeline/bush.webp"
                 alt="Bush"
                 className="w-full h-full object-contain"
               />
             </div>
             <div className="w-[100px] h-[133px] flex-shrink-0 -ml-[40px]">
-              <img
+              <Image
                 src="/Timeline/timeline_mario.webp"
                 alt="Mario"
                 className="w-full h-full object-contain"
@@ -42,14 +43,14 @@ const Timeline = () => {
           <Postcard />
           <div className="flex flex-col items-center">
             <div className="w-[70px] h-[73px] mb-[5px]">
-              <img
+              <Image
                 src="/Timeline/star.webp"
                 alt="Star"
                 className="w-full h-full object-contain"
               />
             </div>
             <div className="w-[153px] h-[192px] flex-shrink-0 z-10">
-              <img
+              <Image
                 src="/Timeline/tub.webp"
                 alt="Tub"
                 className="w-full h-full object-contain"
@@ -57,7 +58,7 @@ const Timeline = () => {
             </div>
           </div>
         </div>
-        <div className="w-full h-[235px] brick-col"></div>
+        <div className="w-full h-[235px] brick-col"/>
       </div>
     </div>
   );
