@@ -1,7 +1,7 @@
 import React from "react";
 import GlowCard from "./GlowCard";
 import Image from "next/image";
-import { userType } from "../dashboard/page";
+import type { userType } from "../dashboard/page";
 import Link from "next/link";
 import { FaDiscord } from "react-icons/fa";
 const DashboardInfographics = ({
@@ -21,7 +21,7 @@ const DashboardInfographics = ({
           >
             <h2 className="text-xs mb-4 p2p">Your Score</h2>
             <div className="flex justify-center items-center space-x-4">
-              <p className="text-lg font-bold p2p">{user.score}1450</p>
+              <p className="text-lg font-bold p2p">{user.score}</p>
               <Image src="/coins.png" alt="Coins" width={64} height={64} />
             </div>
           </GlowCard>
@@ -62,7 +62,7 @@ const DashboardInfographics = ({
             <h2 className="text-xs mb-4 p2p">Your Score</h2>
             <div className="flex justify-center items-center space-x-4">
               <p className="text-sm md:text-lg font-bold p2p">
-                {user.score}1450
+                {user.score}
               </p>
               <Image
                 src="/coins.png"
@@ -113,7 +113,7 @@ const DashboardInfographics = ({
       >
         <h2 className="text-sm mb-4 p2p">Your Score</h2>
         <div className="flex justify-center items-center space-x-4">
-          <p className="text-xl font-bold p2p">{user.score}1450</p>
+          <p className="text-xl font-bold p2p">{user.score}</p>
           <Image src="/coins.png" alt="Coins" width={64} height={64} />
         </div>
       </GlowCard>
@@ -133,7 +133,7 @@ const DashboardInfographics = ({
           />
         </div>
         <div>
-          <p className="text-lg p2p text-gray-400">7/15</p>
+          <p className="text-lg p2p text-gray-400">{user.Issues?.length}/15</p>
           <p className="text-[0.6rem] p2p">
             Questions Solved {user.Issues?.length}
           </p>

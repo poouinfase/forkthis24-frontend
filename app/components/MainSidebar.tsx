@@ -11,7 +11,7 @@ import {
 import { IoMdClose } from "react-icons/io";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
-import { userType } from "../dashboard/page";
+import type { userType } from "../dashboard/page";
 const MainSidebar = ({ user }: { user?: userType }) => {
   const [isNavbarOpen, setNavbar] = useState<boolean>(false);
   const router = useRouter();
@@ -48,9 +48,9 @@ const MainSidebar = ({ user }: { user?: userType }) => {
               className="w-20 h-auto"
             />
             <div className="text-left relative top-1">
-              <p className="text-lg font-semibold">{user.name}Player 1</p>
+              <p className="text-lg font-semibold">{user.name}</p>
               <p className="text-xs text-gray-400 mr-1 truncate w-full md:w-40">
-                {user.email}keshav.aneja2022@vitstudent.ac.in
+                {user.email}
               </p>
             </div>
           </div>
@@ -81,7 +81,7 @@ const MainSidebar = ({ user }: { user?: userType }) => {
             />{" "}
             Leaderboard
           </Link>
-          <Link
+          {/* <Link
             href="/resources"
             className={`py-2 p-6  text-md flex items-center  transition-colors duration-200 mb-3 text-white/80 hover:bg-black hover:text-white hover:border-white/80 border-[1px] border-transparent rounded-md ${
               path.includes("resources") && "bg-black text-white "
@@ -91,16 +91,17 @@ const MainSidebar = ({ user }: { user?: userType }) => {
               className={`mr-3  ${path.includes("resources") && "text-white"}`}
             />{" "}
             Resources
-          </Link>
+          </Link> */}
         </nav>
 
         <div className="pt-10">
           <button
-            className={`py-2 p-6  text-md flex items-center  transition-colors duration-200 mb-3 text-white/80 hover:bg-black hover:text-white hover:border-white/80 border-[1px] border-transparent rounded-md w-full`}
+            className="py-2 p-6  text-md flex items-center  transition-colors duration-200 mb-3 text-white/80 hover:bg-black hover:text-white hover:border-white/80 border-[1px] border-transparent rounded-md w-full"
             onClick={() => {
               Cookies.remove("token");
               router.push("/");
             }}
+            type="button"
           >
             <FaSignOutAlt className="mr-3 " />
             Logout

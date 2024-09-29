@@ -2,9 +2,25 @@
 import Link from "next/link";
 import Image from "next/image";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
-import { useState } from "react";
+import { useEffect, useState, Fragment } from "react";
+import Cookie from "js-cookie";
+
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
+  const [islogged, setIsLogged] = useState(false);
+
+  useEffect(() => {
+    if (Cookie.get("token")) {
+      setIsLogged(true);
+    }
+  }, []);
+
+  const handleSignOut = () => {
+    Cookie.remove("token");
+    setIsLogged(false);
+
+  }
+
   const loginUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/github/login`;
   return (
     <nav className=" --navbar h-fit py-4 px-6 md:px-12 fixed top-0 left-0 z-[100] w-full ">
@@ -39,34 +55,54 @@ const Navbar = () => {
             )}
           </div>
           <Link
-            href="/dashboard"
-            className="text-white uppercase px-3 py-2 rounded hover:bg-white hover:text-black"
+            href="https://discord.gg/PtBPMhtf3f"
+            className="text-white uppercase px-3 py-2 rounded hover:bg-white hover:text-black transition-all duration-200 ease-linear whitespace-nowrap"
           >
-            Dashboard
+            Join Discord!
           </Link>
-          <Link
-            href="/leaderboard"
-            className="text-white uppercase px-3 py-2 rounded hover:bg-white hover:text-black"
-          >
-            Leaderboard
-          </Link>
-          <Link
-            href="/resources"
-            className="text-white uppercase px-3 py-2 rounded hover:bg-white hover:text-black"
-          >
-            Resources
-          </Link>
+          {islogged && (
+            <Fragment>
+              <Link
+                href="/dashboard"
+                className="text-white uppercase px-3 py-2 rounded hover:bg-white hover:text-black transition-all duration-200 ease-linear"
+              >
+                Dashboard
+              </Link>
+              <Link
+                href="/leaderboard"
+                className="text-white uppercase px-3 py-2 rounded hover:bg-white hover:text-black transition-all duration-200 ease-linear"
+              >
+                Leaderboard
+              </Link>
+              {/* <Link
+                href="/resources"
+                className="text-white uppercase px-3 py-2 rounded hover:bg-white hover:text-black transition-all duration-200 ease-linear"
+              >
+                Resources
+              </Link> */}
+            </Fragment>
+          )}
         </div>
         <div className="p2p text-sm hidden md:block">
-          <Link
-            href={loginUrl}
-            className="text-white uppercase px-3 py-2 rounded hover:bg-white hover:text-black"
-          >
-            Login
-          </Link>
+          {!islogged ? (
+            <Link
+              href={loginUrl}
+              className="text-white uppercase px-3 py-2 rounded hover:bg-white hover:text-black transition-all duration-200 ease-linear"
+            >
+              Login
+            </Link>
+          ) : (
+            <button
+              type="submit"
+              className="text-white uppercase px-3 py-2 rounded hover:bg-white hover:text-black transition-all duration-200 ease-linear"
+              onClick={handleSignOut}
+            >
+              Sign out
+            </button>
+          )}
         </div>
       </div>
-      <div className="w-full bg-white h-[2px] --nav-line absolute bottom-0 left-0"></div>
+      <div className="w-full bg-white h-[2px] --nav-line absolute bottom-0 left-0" />
     </nav>
   );
 };

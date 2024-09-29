@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { AiOutlineHome } from "react-icons/ai"; // Importing the icon
 import { BsFileBarGraph, BsBox2 } from "react-icons/bs";
 import { IoLogOutOutline } from "react-icons/io5"; // Import the Logout icon
@@ -25,22 +25,22 @@ const Sidebar: React.FC = () => {
       </div>
 
       <nav className="flex-1 space-y-2 mt-20">
-        <button className="w-full text-white py-2 text-left bg-transparent hover:bg-gray-700 flex items-center space-x-3 text-xl ml-2">
+        <button className="w-full text-white py-2 text-left bg-transparent hover:bg-gray-700 flex items-center space-x-3 text-xl ml-2" type="button">
           <AiOutlineHome />
           <span>Dashboard</span>
         </button>
-        <button className="w-full text-white py-2 text-left bg-transparent hover:bg-gray-700 flex items-center space-x-3 text-xl ml-2">
+        <button className="w-full text-white py-2 text-left bg-transparent hover:bg-gray-700 flex items-center space-x-3 text-xl ml-2" type="button">
           <BsFileBarGraph />
           <span>Leaderboard</span>
         </button>
-        <button className="w-full text-white py-2 text-left bg-transparent hover:bg-gray-700 flex items-center space-x-3 text-xl ml-2">
+        <button className="w-full text-white py-2 text-left bg-transparent hover:bg-gray-700 flex items-center space-x-3 text-xl ml-2" type="button">
           <BsBox2 />
           <span>Resources</span>
         </button>
       </nav>
 
       <div className="text-left pt-5">
-        <button className="w-13/4 text-white py-2 text-center bg-transparent hover:bg-gray-700 flex items-center space-x-4 text-xl ml-10 mt-64">
+        <button className="w-13/4 text-white py-2 text-center bg-transparent hover:bg-gray-700 flex items-center space-x-4 text-xl ml-10 mt-64" type="button">
           <IoLogOutOutline />
           <span>Logout</span>
         </button>

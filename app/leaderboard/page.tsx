@@ -59,7 +59,7 @@ function Leaderboard() {
   return (
     <div className="w-full overflow-x-hidden flex flex-col lg:flex-row bg-black text-white min-h-screen md:max-h-screen rela">
       <MainSidebar user={user} />
-      <div className="brick-col w-full h-[20%] md:h-[25%] fixed bottom-0 right-0"></div>
+      <div className="brick-col w-full h-[20%] md:h-[25%] fixed bottom-0 right-0"/>
       <div className="flex-col fixed bottom-[20%] md:bottom-[25%] left-6 md:left-[30%] lg:flex">
         <Image
           src={"/LeaderBoard/Mario.webp"}
