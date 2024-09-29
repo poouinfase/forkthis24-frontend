@@ -73,20 +73,36 @@ const Navbar = () => {
               >
                 Leaderboard
               </Link>
-              {/* <Link
+              <Link
                 href="/resources"
                 className="text-white uppercase px-3 py-2 rounded hover:bg-white hover:text-black transition-all duration-200 ease-linear"
               >
                 Resources
-              </Link> */}
+              </Link>
+              <Link
+                href={
+                  "https://low-liver-2c4.notion.site/Forkthis-session-110842d8956780dcac5dc6fb4c3389d0"
+                }
+                className="text-white uppercase px-3 py-2 rounded hover:bg-white hover:text-black transition-all duration-200 ease-linear mr-4"
+              >
+                Session
+              </Link>
             </Fragment>
           )}
         </div>
         <div className="p2p text-sm hidden md:block">
+          <Link
+            href={
+              "https://low-liver-2c4.notion.site/Forkthis-session-110842d8956780dcac5dc6fb4c3389d0?pvs=25"
+            }
+            className="text-white uppercase px-3 py-2 rounded hover:bg-white hover:text-black transition-all duration-200 ease-linear mr-4"
+          >
+            Session
+          </Link>
           {!islogged ? (
             <Link
               href={loginUrl}
-              className="text-white uppercase px-3 py-2 rounded hover:bg-white hover:text-black transition-all duration-200 ease-linear"
+              className=" uppercase px-3 py-2 rounded bg-white text-black transition-all duration-200 ease-linear"
             >
               Login
             </Link>

@@ -32,7 +32,7 @@ const DashboardInfographics = ({
           >
             <h2 className="text-xs p2p mb-4 font-press">Challenge Progress</h2>
             <p className="text-2xl p2p text-gray-400">
-              {user.Issues?.length}/15
+              {user.Issues?.length}/100
             </p>
             <p className="text-xs p2p mt-4">Questions Solved</p>
           </GlowCard>
@@ -61,9 +61,7 @@ const DashboardInfographics = ({
           >
             <h2 className="text-xs mb-4 p2p">Your Score</h2>
             <div className="flex justify-center items-center space-x-4">
-              <p className="text-sm md:text-lg font-bold p2p">
-                {user.score}
-              </p>
+              <p className="text-sm md:text-lg font-bold p2p">{user.score}</p>
               <Image
                 src="/coins.png"
                 alt="Coins"
@@ -80,7 +78,7 @@ const DashboardInfographics = ({
           >
             <h2 className="text-xs p2p mb-4 font-press">Challenge Progress</h2>
             <p className="text-base md:text-2xl p2p text-gray-400">
-              {user.Issues?.length}/15
+              {user.Issues?.length}/100
             </p>
             <p className="text-[0.5rem] p2p mt-4">Questions Solved</p>
           </div>
@@ -133,7 +131,7 @@ const DashboardInfographics = ({
           />
         </div>
         <div>
-          <p className="text-lg p2p text-gray-400">{user.Issues?.length}/15</p>
+          <p className="text-lg p2p text-gray-400">{user.Issues?.length}/100</p>
           <p className="text-[0.6rem] p2p">
             Questions Solved {user.Issues?.length}
           </p>
