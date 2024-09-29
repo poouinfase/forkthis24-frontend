@@ -19,6 +19,13 @@ export interface userType {
   name: string | null;
 }
 
+const targetDate = new Date("2024-10-01T23:59:59")
+function timeSet() {
+  const endDate = targetDate.getTime();
+  const currDate = Date.now();
+  return (endDate - +currDate);
+}
+
 function Dashboard() {
   const [isClient, setIsClient] = useState(false);
   const router = useRouter();
@@ -30,24 +37,23 @@ function Dashboard() {
     }
   }, []);
 
-  const [timeLeft, setTimeLeft] = useState<string>(
-    new Date().toLocaleTimeString("en-in", { hourCycle: "h23" })
+  const [timeLeft, setTimeLeft] = useState<number>(
+    timeSet()
   );
   useEffect(() => {
     const interval = setInterval(() => {
-      const endDate = new Date();
-      endDate.setFullYear(2024, 10, 1);
-      endDate.setHours(20, 30, 0);
-      const currDate = new Date();
       setTimeLeft(
-        new Date(+endDate - +currDate).toLocaleTimeString("en-in", {
-          hourCycle: "h23",
-        })
-      );
+        timeSet());
     }, 1000); // Update every second
     return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
+  const hours = Math.floor((timeLeft) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+  const formatWithLeadingZero = (value: number): string => {
+    return value < 10 ? `0${value}` : `${value}`;
+  };
   const [user, setUser] = useState<userType>({} as userType);
 
   useEffect(() => {
@@ -81,7 +87,7 @@ function Dashboard() {
                 className="text-xl md:text-3xl font-bold leading-[30.5px] tracking-[0.5%] font-press"
                 style={{ marginTop: "1rem" }}
               >
-                {timeLeft}
+                {`${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`}
               </p>
             </div>
           )}
