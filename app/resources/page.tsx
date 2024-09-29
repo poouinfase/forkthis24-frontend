@@ -26,27 +26,29 @@ function Resources() {
     resources: any[]
   ) => (
     <>
-      <p className="text-2xl md:text-3xl mb-4 text-left w-full pl-4 font-press text-[rgba(140,142,143,1)]">
+      <p className="text-2xl md:text-3xl mb-4 text-left w-full pl-4 font-press text-[rgba(140,142,143,1)] font-robotoslab">
         {title}
       </p>
       <div className="flex overflow-x-auto pb-4 mb-8 px-4 hide-scrollbar">
         {resources.map((resource, index) => (
           <div
             key={index}
-            className="button-dashed-border flex-shrink-0 w-[80%] sm:w-[60%] md:w-[40%] mr-4 last:mr-0 mt-2 p-4"
+            className="button-dashed-border flex-shrink-0 w-[80%] sm:w-[60%] md:w-[30%] mr-4 last:mr-0 mt-2 p-4"
           >
-            <div className="bg-[rgba(10,12,14,1)] rounded-lg  shadow-lg flex flex-col h-auto ">
-              <div className="relative w-full h-fit">
-                <img src={resource.image_url} alt="Resource Image" />
-              </div>
-              <div className="w-full  p-4 flex flex-col justify-between">
+            <div className="bg-[rgba(10,12,14,1)] rounded-lg h-full  shadow-lg flex flex-col h-auto ">
+              {resource.image_url && (
+                <div className="relative w-full h-fit">
+                  <img src={resource.image_url} alt="Resource Image" />
+                </div>
+              )}
+              <div className="w-full h-full p-4 flex flex-col justify-between">
                 <div>
                   <h2
-                    className={`text-base sm:text-xl md:text-2xl font-bold font-press ${color} mb-2 mt-2 sm:-mt-4`}
+                    className={`text-base sm:text-xl md:text-2xl font-bold font-press ${color} mt-2`}
                   >
                     {resource.title}
                   </h2>
-                  <p className="text-white text-xs sm:text-sm md:text-base font-roboto-mono">
+                  <p className="text-white/70 text-xs sm:text-sm  font-roboto-mono">
                     {resource.description}
                   </p>
                 </div>
@@ -56,7 +58,7 @@ function Resources() {
                   rel="noopener noreferrer"
                 >
                   <button
-                    className={`w-full sm:w-3/4 px-2 py-1 ${color} text-white hover:opacity-80 font-press text-xs ${borderColor} mt-4 sm:-mb-4`}
+                    className={`w-full sm:w-3/4 px-2 py-1 ${color} text-white hover:opacity-80 font-press text-xs ${borderColor} mt-4 sm:-mb-4 sticky bottom-0`}
                   >
                     View {title === "YouTube" ? "Video" : "Resource"}
                   </button>
@@ -130,7 +132,6 @@ const resourceData = [
       "Comprehensive documentation on Git and GitHub provided by Chaicode.",
     url: "https://docs.chaicode.com/git-and-github/",
     type: "docs",
-    image_url: "https://docs.chaicode.com/assets/images/favicon.ico",
   },
   {
     title: "GitLab Git Cheat Sheet",
@@ -138,7 +139,6 @@ const resourceData = [
       "A downloadable PDF cheat sheet for Git commands, provided by GitLab.",
     url: "https://about.gitlab.com/images/press/git-cheat-sheet.pdf",
     type: "pdf",
-    image_url: "https://about.gitlab.com/images/press/git-logo.png",
   },
   {
     title: "Git and GitHub for Beginners – FreeCodeCamp",
@@ -146,7 +146,5 @@ const resourceData = [
       "A beginner's guide to understanding Git and GitHub, focusing on version control and collaboration.",
     url: "https://www.freecodecamp.org/news/git-and-github-for-beginners/",
     type: "article",
-    image_url:
-      "https://www.freecodecamp.org/news/content/images/size/w2000/2020/11/cover-photo.png",
   },
 ];

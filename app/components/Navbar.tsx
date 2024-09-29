@@ -18,8 +18,7 @@ const Navbar = () => {
   const handleSignOut = () => {
     Cookie.remove("token");
     setIsLogged(false);
-
-  }
+  };
 
   const loginUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/github/login`;
   return (

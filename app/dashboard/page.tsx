@@ -8,6 +8,8 @@ import Image from "next/image";
 import DashboardInfographics from "../components/DashboardInfographics";
 import RepositoryContent from "../components/RepositoryContent";
 import MainSidebar from "../components/MainSidebar";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 export interface userType {
   score: number | null;
   githubUsername: string | null;
@@ -19,9 +21,13 @@ export interface userType {
 
 function Dashboard() {
   const [isClient, setIsClient] = useState(false);
-
+  const router = useRouter();
   useEffect(() => {
     setIsClient(true);
+    const token = Cookies.get("token");
+    if (!token) {
+      router.push("/");
+    }
   }, []);
 
   const [timeLeft, setTimeLeft] = useState<string>(
@@ -30,8 +36,8 @@ function Dashboard() {
   useEffect(() => {
     const interval = setInterval(() => {
       const endDate = new Date();
-      endDate.setFullYear(2024, 9, 31);
-      endDate.setHours(23, 59, 59);
+      endDate.setFullYear(2024, 10, 1);
+      endDate.setHours(20, 30, 0);
       const currDate = new Date();
       setTimeLeft(
         new Date(+endDate - +currDate).toLocaleTimeString("en-in", {
