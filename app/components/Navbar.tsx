@@ -82,7 +82,7 @@ const Navbar = () => {
                 href={
                   "https://low-liver-2c4.notion.site/Forkthis-session-110842d8956780dcac5dc6fb4c3389d0"
                 }
-                className="text-white uppercase px-3 py-2 rounded hover:bg-white hover:text-black transition-all duration-200 ease-linear mr-4"
+                className="text-white uppercase px-3 py-2 rounded hover:bg-white hover:text-black transition-all duration-200 ease-linear mr-4 md:hidden"
               >
                 Session
               </Link>
