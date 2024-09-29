@@ -4,10 +4,12 @@ const Hero: React.FC = () => {
   return (
     <div className="min-h-[90vh] md:min-h-screen bg-black flex flex-col justify-center items-center relative hero">
       <div className="bg-white/70 w-[50vw] aspect-square rounded-full absolute left-1/2 -translate-x-1/2 top-[-25vw] blur-[100px] md:blur-[300px]"></div>
-      <span className="text-xl md:text-5xl p2p glow-text font-bold relative -top-20 z-[20] scroller">
-        ForkThis&apos;24
-        <button>Login</button>
+      <span className="text-xl md:text-5xl p2p glow-text font-bold relative -top-20 z-[20] scroller flex flex-col gap-4 items-center">
+        <p>ForkThis&apos;24</p>
       </span>
+      <button className="text-sm bg-white text-black rounded-sm md:hidden  px-6 py-2 relative z-[50] p2p">
+        Login
+      </button>
       <div className="w-full h-full absolute top-0 left-0 z-0 overflow-x-hidden ">
         <div className="bg-[rgba(0,0,0,0.3)] w-full h-full absolute top-0 left-0 z-[10] backdrop-blur-[2px]"></div>
         <Image

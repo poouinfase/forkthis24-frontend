@@ -35,14 +35,14 @@ function Resources() {
             key={index}
             className="button-dashed-border flex-shrink-0 w-[80%] sm:w-[60%] md:w-[40%] mr-4 last:mr-0 mt-2 p-4"
           >
-            <div className="bg-[rgba(10,12,14,1)] rounded-lg overflow-hidden shadow-lg flex flex-col sm:flex-row h-auto sm:h-48">
-              <div className="relative w-full sm:w-1/3 h-32 sm:h-auto">
+            <div className="bg-[rgba(10,12,14,1)] rounded-lg  shadow-lg flex flex-col h-auto ">
+              <div className="relative w-full h-fit">
                 <img src={resource.image_url} alt="Resource Image" />
               </div>
-              <div className="w-full sm:w-2/3 p-4 flex flex-col justify-between">
+              <div className="w-full  p-4 flex flex-col justify-between">
                 <div>
                   <h2
-                    className={`text-xl sm:text-2xl md:text-3xl font-bold font-press ${color} mb-2 mt-2 sm:-mt-4`}
+                    className={`text-base sm:text-xl md:text-2xl font-bold font-press ${color} mb-2 mt-2 sm:-mt-4`}
                   >
                     {resource.title}
                   </h2>
@@ -70,7 +70,7 @@ function Resources() {
   );
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col">
+    <div className="flex flex-col lg:flex-row bg-black text-white min-h-screen md:max-h-screen">
       <MainSidebar />
       <div className="flex-1 overflow-y-auto hide-scrollbar">
         <div className="p-4 md:p-6 text-white">
