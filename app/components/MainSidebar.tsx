@@ -81,7 +81,7 @@ const MainSidebar = ({ user }: { user?: userType }) => {
             />{" "}
             Leaderboard
           </Link>
-          {/* <Link
+          <Link
             href="/resources"
             className={`py-2 p-6  text-md flex items-center  transition-colors duration-200 mb-3 text-white/80 hover:bg-black hover:text-white hover:border-white/80 border-[1px] border-transparent rounded-md ${
               path.includes("resources") && "bg-black text-white "
@@ -91,7 +91,20 @@ const MainSidebar = ({ user }: { user?: userType }) => {
               className={`mr-3  ${path.includes("resources") && "text-white"}`}
             />{" "}
             Resources
-          </Link> */}
+          </Link>
+          <Link
+            href={
+              "https://low-liver-2c4.notion.site/Forkthis-session-110842d8956780dcac5dc6fb4c3389d0"
+            }
+            className={`py-2 p-6  text-md flex items-center  transition-colors duration-200 mb-3 text-white/80 hover:bg-black hover:text-white hover:border-white/80 border-[1px] border-transparent rounded-md ${
+              path.includes("resources") && "bg-black text-white "
+            }`}
+          >
+            <FaBook
+              className={`mr-3  ${path.includes("resources") && "text-white"}`}
+            />{" "}
+            Session
+          </Link>
         </nav>
 
         <div className="pt-10">

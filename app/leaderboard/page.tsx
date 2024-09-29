@@ -86,8 +86,8 @@ function Leaderboard() {
 
       <div className="absolute top-1/2 -translate-y-1/2 lg:translate-y-0 lg:top-4 left-60 hidden lg:block lg:w-[35%]">
         <span className="text-black font-robotoslab font-bold text-xs lg:text-xl p2p absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-center">
-          <p>SCORE {user.score}230</p>
-          <p>RANK {user.rank}22</p>
+          <p>SCORE {user.score}</p>
+          <p>RANK {user.rank}</p>
         </span>
         <Image
           src={"/LeaderBoard/Cloud.webp"}

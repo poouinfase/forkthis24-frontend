@@ -25,7 +25,11 @@ const Navbar = () => {
     <nav className=" --navbar h-fit py-4 px-6 md:px-12 fixed top-0 left-0 z-[100] w-full ">
       <div
         className={`flex transition-all duration-200 ease-linear flex-col md:flex-row md:justify-between md:items-center ${
-          openMenu ? "h-40 md:h-fit" : "h-9 md:h-fit"
+          openMenu
+            ? islogged
+              ? "h-60 md:h-fit"
+              : "h-32 md:h-fit"
+            : "h-9 md:h-fit"
         } overflow-hidden`}
       >
         <div className="flex flex-col md:flex-row md:items-center space-x-0  md:space-x-4 p2p text-xs md:text-sm">
@@ -73,12 +77,7 @@ const Navbar = () => {
               >
                 Leaderboard
               </Link>
-              <Link
-                href="/resources"
-                className="text-white uppercase px-3 py-2 rounded hover:bg-white hover:text-black transition-all duration-200 ease-linear"
-              >
-                Resources
-              </Link>
+
               <Link
                 href={
                   "https://low-liver-2c4.notion.site/Forkthis-session-110842d8956780dcac5dc6fb4c3389d0"
@@ -89,6 +88,12 @@ const Navbar = () => {
               </Link>
             </Fragment>
           )}
+          <Link
+            href="/resources"
+            className="text-white uppercase px-3 py-2 rounded hover:bg-white hover:text-black transition-all duration-200 ease-linear"
+          >
+            Resources
+          </Link>
         </div>
         <div className="p2p text-sm hidden md:block">
           <Link

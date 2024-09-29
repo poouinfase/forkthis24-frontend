@@ -24,7 +24,7 @@ const Timeline2 = () => {
               <span className="flex flex-col items-center text-lg md:text-xl text-center lg:text-2xl p2p">
                 <h1>Opening Ceremony</h1>
                 <p className="text-xs md:text-sm font-robotomono text-white/80">
-                  22nd September 2023, 10:00 am onwards
+                  22nd September 2024, 10:00 am onwards
                 </p>
                 <Image
                   src="/platform.png"
@@ -51,7 +51,7 @@ const Timeline2 = () => {
               <span className="flex flex-col items-center text-lg md:text-xl text-center lg:text-2xl p2p">
                 <h1>Git Basics</h1>
                 <p className="text-xs md:text-sm font-robotomono text-white/80">
-                  22nd September 2023, 11:00 am onwards
+                  22nd September 2024, 11:00 am onwards
                 </p>
                 <Image
                   src="/platform.png"
@@ -76,7 +76,7 @@ const Timeline2 = () => {
               <span className="flex flex-col items-center text-lg md:text-xl text-center lg:text-2xl p2p">
                 <h1>Speaker Session</h1>
                 <p className="text-xs md:text-sm font-robotomono text-white/80">
-                  22nd September 2023, 2:00 pm onwards
+                  22nd September 2024, 2:00 pm onwards
                 </p>
                 <Image
                   src="/platform.png"
@@ -103,7 +103,7 @@ const Timeline2 = () => {
               <span className="flex flex-col items-center text-lg md:text-xl text-center lg:text-2xl p2p">
                 <h1>Intro to Game</h1>
                 <p className="text-xs md:text-sm font-robotomono text-white/80">
-                  22nd September 2023, 4:30 pm onwards
+                  22nd September 2024, 4:30 pm onwards
                 </p>
                 <Image
                   src="/platform.png"
@@ -128,7 +128,7 @@ const Timeline2 = () => {
               <span className="flex flex-col items-center text-lg md:text-xl text-center lg:text-2xl p2p">
                 <h1>Online Competition</h1>
                 <p className="text-xs md:text-sm font-robotomono text-white/80">
-                  22nd September 2023, 6:00 pm onwards
+                  22nd September 2024, 6:00 pm onwards
                 </p>
                 <Image
                   src="/platform.png"

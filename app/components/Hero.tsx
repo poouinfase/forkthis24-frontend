@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 const Hero: React.FC = () => {
+  const router = useRouter();
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  useEffect(() => {
+    if (Cookies.get("token")) {
+      setIsLoggedIn(true);
+    }
+  }, []);
   const loginUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/github/login`;
   return (
     <div className="min-h-[90vh] md:min-h-screen bg-black flex flex-col justify-center items-center relative hero">
@@ -9,12 +18,23 @@ const Hero: React.FC = () => {
       <span className="text-xl md:text-5xl p2p glow-text font-bold relative -top-20 z-[20] scroller flex flex-col gap-4 items-center">
         <p>ForkThis&apos;24</p>
       </span>
-      <Link
-        href={loginUrl}
-        className="text-sm bg-white text-black rounded-sm md:hidden  px-6 py-2 relative z-[50] p2p"
-      >
-        Login
-      </Link>
+      {isLoggedIn ? (
+        <Link
+          href={loginUrl}
+          className="text-sm bg-white text-black rounded-sm md:hidden  px-6 py-2 relative z-[50] p2p"
+        >
+          Login
+        </Link>
+      ) : (
+        <button
+          className="text-sm bg-white text-black rounded-sm md:hidden  px-6 py-2 relative z-[50] p2p"
+          onClick={() => {
+            router.push("/dashboard");
+          }}
+        >
+          Dashboard
+        </button>
+      )}
       <div className="w-full h-full absolute top-0 left-0 z-0 overflow-x-hidden ">
         <div className="bg-[rgba(0,0,0,0.3)] w-full h-full absolute top-0 left-0 z-[10] backdrop-blur-[2px]"></div>
         <Image
